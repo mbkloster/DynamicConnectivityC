@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct QuickUnion
 {
@@ -23,13 +24,13 @@ void quickUnionInit(struct QuickUnion* quickU)
 int quickUnionFindRoot(struct QuickUnion* quickU, int i) 
 {
 	while(i != quickU->id[i]) {
-		id[i] = id[id[i]]; //Make each node point to it's parent through path compression
+		quickU->id[i] = quickU->id[quickU->id[i]]; //Make each node point to it's parent through path compression
 		i = quickU->id[i];
 	}
 	return i;
 }
 
-Boolean quickUnionCheckConnected(struct QuickUnion* quickU, int p, int q)
+enum Boolean quickUnionCheckConnected(struct QuickUnion* quickU, int p, int q)
 {
 	if (quickUnionFindRoot(quickU, p) == quickUnionFindRoot(quickU, q))
 		return TRUE;
